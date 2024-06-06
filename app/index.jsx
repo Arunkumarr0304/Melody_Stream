@@ -8,8 +8,8 @@ import Button from "../components/Button/Button";
 import Pagination from "../components/Pagination/Pagination";
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts, Kalam_400Regular, Kalam_700Bold } from '@expo-google-fonts/kalam';
-import { Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
-import { Lato_400Regular } from "@expo-google-fonts/lato";
+import { Montserrat_400Regular, Montserrat_700Bold, Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
+import { Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato";
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,10 +23,11 @@ export default function App() {
   const [activePageIndex, setActivePageIndex] = useState(0);
 
   const [fontsLoaded] = useFonts({
-    Kalam_400Regular,
-    Kalam_700Bold,
     Montserrat_700Bold,
     Montserrat_400Regular,
+    Montserrat_600SemiBold,
+    Lato_400Regular,
+    Lato_700Bold
   });
 
   const onLayoutRootView = useCallback(async () => {

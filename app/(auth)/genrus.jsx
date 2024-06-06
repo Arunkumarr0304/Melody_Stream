@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import Back from "../../assets/images/back.svg";
 import { genrus_data } from '../../components/Data/Data';
@@ -6,6 +6,7 @@ import { Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import Tick from "../../assets/images/active_tick.svg";
 import {Redirect, router} from "expo-router";
 import Button from '../../components/Button/Button';
+
 
 
 const Genrus = () => {
@@ -31,6 +32,7 @@ const Genrus = () => {
         </TouchableOpacity>
         <Text style={styles.heading}>Genres</Text>
       </View>
+      <ScrollView>
       <Text style={styles.heading_text}>
         Dive into a world of musical genres, from classic to contemporary, and find your rhythm.
       </Text>
@@ -55,6 +57,7 @@ const Genrus = () => {
       <View style={styles.button_box}>
         <Button buttonText="continue" onPress={continues} />
       </View>
+      </ScrollView>
     </View>
   );
 };

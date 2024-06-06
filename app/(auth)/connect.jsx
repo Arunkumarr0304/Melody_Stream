@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView,  } from 'react-native';
 import React, { useState } from 'react';
 import Back from "../../assets/images/back.svg";
-import { genrus_data } from '../../components/Data/Data';
+import { connect_data, genrus_data } from '../../components/Data/Data';
 import { Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import Tick from "../../assets/images/active_tick.svg";
 import {Redirect, router} from "expo-router";
@@ -19,6 +19,10 @@ const Connect = () => {
     router.push('genrus');
   }
 
+  const gohome = () => {
+    router.push('home');
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -27,11 +31,12 @@ const Connect = () => {
         </TouchableOpacity>
         <Text style={styles.heading}>Connect</Text>
       </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={styles.heading_text}>
       Connect with artists, and fellow music lovers to share your favorite playlists, and discover new tunes together.
       </Text>
       <View style={styles.genrus_container}>
-        {genrus_data.map((d) => (
+        {connect_data.map((d) => (
           <TouchableOpacity
             style={[
               styles.genrus_box,
@@ -49,8 +54,9 @@ const Connect = () => {
         ))}
       </View>
       <View style={styles.button_box}>
-        <Button buttonText="save" />
+        <Button buttonText="save" onPress={gohome} />
       </View>
+      </ScrollView>
     </View>
   );
 };
@@ -92,8 +98,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     flexWrap: 'wrap',
-    marginTop: 50,
-    marginBottom: 60,
+    marginVertical: 40,
   },
   genrus_box: {
     maxWidth: 104,
@@ -119,4 +124,7 @@ const styles = StyleSheet.create({
     top: 10,
     right: 7,
   },
+  button_box: {
+    marginBottom: 20,
+  }
 });

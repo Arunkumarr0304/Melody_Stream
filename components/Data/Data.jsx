@@ -24,6 +24,71 @@ import Active_Genrus7 from "../../assets/images/active_genrus7.svg";
 import Active_Genrus8 from "../../assets/images/active_genrus8.svg";
 import Active_Genrus9 from "../../assets/images/active_genrus9.svg";
 
+import Connect1 from "../../assets/images/connect_img1.svg";
+import Connect2 from "../../assets/images/connect_img2.svg";
+import Connect3 from "../../assets/images/connect_img3.svg";
+import Connect4 from "../../assets/images/connect_img4.svg";
+import Connect5 from "../../assets/images/connect_img5.svg";
+import Connect6 from "../../assets/images/connect_img6.svg";
+import Connect7 from "../../assets/images/connect_img7.svg";
+import Connect8 from "../../assets/images/connect_img8.svg";
+import Connect9 from "../../assets/images/connect_img9.svg";
+import Active_connect1 from "../../assets/images/active_connect1.svg";
+import Active_connect2 from "../../assets/images/active_connect2.svg";
+import Active_connect3 from "../../assets/images/active_connect3.svg";
+import Active_connect4 from "../../assets/images/active_connect4.svg";
+import Active_connect5 from "../../assets/images/active_connect5.svg";
+import Active_connect6 from "../../assets/images/active_connect6.svg";
+import Active_connect7 from "../../assets/images/active_connect7.svg";
+import Active_connect8 from "../../assets/images/active_connect8.svg";
+import Active_connect9 from "../../assets/images/active_connect9.svg";
+
+import Top1 from "../../assets/images/top1.svg";
+import Top2 from "../../assets/images/top2.svg";
+import Top3 from "../../assets/images/top3.svg";
+import Top4 from "../../assets/images/top4.svg";
+
+import Fav1 from "../../assets/images/favourite1.svg";
+import Fav2 from "../../assets/images/favourite2.svg";
+import Fav3 from "../../assets/images/favourite3.svg";
+import Fav4 from "../../assets/images/favourite4.svg";
+import Fav5 from "../../assets/images/favourite5.svg";
+import Fav6 from "../../assets/images/favourite6.svg";
+import Fav7 from "../../assets/images/favourite7.svg";
+import Fav8 from "../../assets/images/favourite8.svg";
+import Fav9 from "../../assets/images/favourite9.svg";
+
+import Recent1 from "../../assets/images/Recent_img1.svg";
+import Recent2 from "../../assets/images/Recent_img2.svg";
+import Recent3 from "../../assets/images/Recent_img3.svg";
+import Recent4 from "../../assets/images/Recent_img4.svg";
+
+import Live1 from "../../assets/images/Live_img1.svg";
+import Live2 from "../../assets/images/Live_img2.svg";
+import Live3 from "../../assets/images/Live_img3.svg";
+import Live4 from "../../assets/images/Live_img4.svg";
+
+
+import Search1 from "../../assets/images/search1.svg";
+import Search2 from "../../assets/images/search2.svg";
+import Search3 from "../../assets/images/search3.svg";
+import Search4 from "../../assets/images/search4.svg";
+import Search5 from "../../assets/images/search5.svg";
+import Search6 from "../../assets/images/search6.svg";
+import Search7 from "../../assets/images/search7.svg";
+import Search8 from "../../assets/images/search8.svg";
+import Search9 from "../../assets/images/search9.svg";
+import Search10 from "../../assets/images/search10.svg";
+import Search11 from "../../assets/images/search11.svg";
+import Search12 from "../../assets/images/search12.svg";
+
+import Library1 from "../../assets/images/library1.svg";
+import Library2 from "../../assets/images/library2.svg";
+import Library3 from "../../assets/images/library3.svg";
+import Library4 from "../../assets/images/library4.svg";
+import Library5 from "../../assets/images/library5.svg";
+import Library6 from "../../assets/images/library6.svg";
+
 export const pages = [
     {
         id: 1,
@@ -117,4 +182,322 @@ export const genrus_data = [
         text: 'Funk',
     }
 
+]
+
+
+export const connect_data = [
+    {
+        id: 1,
+        image: <Connect1 />,
+        Active: <Active_connect1 />,
+        text: 'Hip Hop',
+    },
+    {
+        id: 2,
+        image: <Connect2 />,
+        Active: <Active_connect2 />,
+        text: 'Classical',
+    },
+    {
+        id: 3,
+        image: <Connect3 />,
+        Active: <Active_connect3 />,
+        text: 'K-Pop',
+    },
+    {
+        id: 4,
+        image: <Connect4 />,
+        Active: <Active_connect4 />,
+        text: 'Rock',
+    },
+    {
+        id: 5,
+        image: <Connect5 />,
+        Active: <Active_connect5 />,
+        text: 'R & B',
+    },
+    {
+        id: 6,
+        image: <Connect6 />,
+        Active: <Active_connect6 />,
+        text: 'Folk',
+    },
+    {
+        id: 7,
+        image: <Connect7 />,
+        Active: <Active_connect7 />,
+        text: 'Trance',
+    },
+    {
+        id: 8,
+        image: <Connect8 />,
+        Active: <Active_connect8 />,
+        text: 'Indie Rock',
+    },
+    {
+        id: 9,
+        image: <Connect9 />,
+        Active: <Active_connect9 />,
+        text: 'Funk',
+    }
+
+]
+
+export const home_tab = [
+    {
+        id: 1,
+        text: 'all',
+    },
+    {
+        id: 2,
+        text: 'music',
+    },
+    {
+        id: 3,
+        text: 'Podcasts',
+    },
+]
+
+
+export const top_data = [
+    {
+        id: 1,
+        image: <Top1 />,
+        heading: 'Jasmine Lee Mix',
+    },
+    {
+        id: 2,
+        image: <Top2 />,
+        heading: 'Anirudh Hits Mix',
+    },
+    {
+        id: 3,
+        image: <Top3 />,
+        heading: 'Pradeep Hits Mix',
+    },
+    {
+        id: 4,
+        image: <Top4 />,
+        heading: 'Havco Bros Mix',
+    },
+]
+
+
+export const Favourite_data = [
+    {
+        id: 1,
+        image: <Fav1 />,
+        text: 'Jasmine Lee',
+    },
+    {
+        id: 2,
+        image: <Fav2 />,
+        text: 'Jasmine Lee',
+    },
+    {
+        id: 3,
+        image: <Fav3 />,
+        text: 'Jasmine Lee',
+    },
+    {
+        id: 4,
+        image: <Fav4 />,
+        text: 'Jasmine Lee',
+    },
+    {
+        id: 5,
+        image: <Fav5 />,
+        text: 'Jasmine Lee',
+    },
+    {
+        id: 6,
+        image: <Fav6 />,
+        text: 'Jasmine Lee',
+    },
+    {
+        id: 7,
+        image: <Fav7 />,
+        text: 'Jasmine Lee',
+    },
+    {
+        id: 8,
+        image: <Fav8 />,
+        text: 'Jasmine Lee',
+    },
+    {
+        id: 9,
+        image: <Fav9 />,
+        text: 'Jasmine Lee',
+    }
+]
+
+
+export const recent_data = [
+    {
+        id: 1,
+        image: <Recent1 />,
+        heading: 'Jasmine Lee Mix',
+    },
+    {
+        id: 2,
+        image: <Recent2 />,
+        heading: 'Anirudh Hits Mix',
+    },
+    {
+        id: 3,
+        image: <Recent3 />,
+        heading: 'Pradeep Hits Mix',
+    },
+    {
+        id: 4,
+        image: <Recent4 />,
+        heading: 'Havco Bros Mix',
+    },
+]
+
+
+export const Live_data = [
+    {
+        id: 1,
+        image: <Live1 />,
+        heading: 'Nocturno Vibes - Live at london ',
+        details: 'Josh DJ ft, Kendry & Johanx',
+    },
+    {
+        id: 2,
+        image: <Live2 />,
+        heading: 'Cityscape - Live from London',
+        details: 'Josh DJ ft, Kendry & Johanx',
+    },
+    {
+        id: 3,
+        image: <Live3 />,
+        heading: 'Urban Melodies - Live London',
+        details: 'Josh DJ ft, Kendry & Johanx',
+    },
+    {
+        id: 4,
+        image: <Live4 />,
+        heading: 'Urban Harmonics - Live London',
+        details: 'Josh DJ ft, Kendry & Johanx',
+    },
+
+]
+
+export const search_data = [
+    {
+        id: 1,
+        image: <Search1 />,
+        text: 'podcasts',
+    },
+    {
+        id: 2,
+        image: <Search2 />,
+        text: 'Indie Music',
+    },
+    {
+        id: 3,
+        image: <Search3 />,
+        text: 'love',
+    },
+    {
+        id: 4,
+        image: <Search4 />,
+        text: 'hip hop',
+    },
+    {
+        id: 5,
+        image: <Search5 />,
+        text: 'chill',
+    },
+    {
+        id: 6,
+        image: <Search6 />,
+        text: 'devotional',
+    },
+    {
+        id: 7,
+        image: <Search7 />,
+        text: 'radio',
+    },
+    {
+        id: 8,
+        image: <Search8 />,
+        text: 'classical',
+    },
+    {
+        id: 9,
+        image: <Search9 />,
+        text: 'k-pop',
+    },
+    {
+        id: 10,
+        image: <Search10 />,
+        text: 'folk',
+    },
+    {
+        id: 11,
+        image: <Search11 />,
+        text: 'trance',
+    },
+    {
+        id: 12,
+        image: <Search12 />,
+        text: 'rock',
+    },
+
+]
+
+export const library_tab = [
+    {
+        id: 1,
+        text: 'Playlist',
+    },
+    {
+        id: 2,
+        text: 'Albums',
+    },
+    {
+        id: 3,
+        text: 'Artists',
+    }
+]
+
+export const library_data = [
+    {
+        id: 1,
+        image: <Library1 />,
+        heading: 'Liked Songs',
+        playlist: 'Playlist, 25 songs',
+    },
+    {
+        id: 2,
+        image: <Library2 />,
+        heading: 'Jasmine Mix',
+        playlist: 'Playlist, 25 songs',
+    },
+    {
+        id: 3,
+        image: <Library3 />,
+        heading: 'Anirudh Mix',
+        playlist: 'Playlist, 25 songs',
+    },
+    {
+        id: 4,
+        image: <Library4 />,
+        heading: 'Pradeep Mix',
+        playlist: 'Playlist, 25 songs',
+    },
+    {
+        id: 5,
+        image: <Library5 />,
+        heading: 'Havco Mix',
+        playlist: 'Playlist, 25 songs',
+    },
+    {
+        id: 6,
+        image: <Library6 />,
+        heading: 'Zara Ray Mix',
+        playlist: 'Playlist, 25 songs',
+    },
 ]
