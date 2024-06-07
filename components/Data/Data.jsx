@@ -89,6 +89,23 @@ import Library4 from "../../assets/images/library4.svg";
 import Library5 from "../../assets/images/library5.svg";
 import Library6 from "../../assets/images/library6.svg";
 
+import Song1 from "../../assets/images/search1.svg";
+import Song2 from "../../assets/images/songs2.svg";
+import Song3 from "../../assets/images/songs3.svg";
+import Song4 from "../../assets/images/songs4.svg";
+import Song5 from "../../assets/images/songs5.svg";
+import Song6 from "../../assets/images/songs6.svg";
+import Song7 from "../../assets/images/songs7.svg";
+import Song8 from "../../assets/images/songs8.svg";
+import Song9 from "../../assets/images/songs9.svg";
+
+import Profile1 from "../../assets/images/profile_icon1.svg";
+import Profile2 from "../../assets/images/profile_icon2.svg";
+import Profile3 from "../../assets/images/profile_icon3.svg";
+import Profile4 from "../../assets/images/profile_icon4.svg";
+import Profile5 from "../../assets/images/profile_icon5.svg";
+import Profile6 from "../../assets/images/profile_icon6.svg";
+
 export const pages = [
     {
         id: 1,
@@ -474,30 +491,118 @@ export const library_data = [
         id: 2,
         image: <Library2 />,
         heading: 'Jasmine Mix',
-        playlist: 'Playlist, 25 songs',
+        playlist: 'Playlist, 145 songs',
     },
     {
         id: 3,
         image: <Library3 />,
         heading: 'Anirudh Mix',
-        playlist: 'Playlist, 25 songs',
+        playlist: 'Playlist, 145 songs',
     },
     {
         id: 4,
         image: <Library4 />,
         heading: 'Pradeep Mix',
-        playlist: 'Playlist, 25 songs',
+        playlist: 'Playlist, 145 songs',
     },
     {
         id: 5,
         image: <Library5 />,
         heading: 'Havco Mix',
-        playlist: 'Playlist, 25 songs',
+        playlist: 'Playlist, 145 songs',
     },
     {
         id: 6,
         image: <Library6 />,
         heading: 'Zara Ray Mix',
-        playlist: 'Playlist, 25 songs',
+        playlist: 'Playlist, 145 songs',
+    },
+]
+
+
+export  const songs_data = [
+    {
+        id: 1,
+        image: <Song1 />,
+        name: "Indie Music",
+        singer: "J-Hope",
+    },
+    {
+        id: 2,
+        image: <Song2 />,
+        name: "Uptown Funk",
+        singer: "Mark Ronson ft. Bruno Mars",
+    },
+    {
+        id: 3,
+        image: <Song3 />,
+        name: "Can't Stop the Feeling!",
+        singer: "Justin Timberlake",
+    },
+    {
+        id: 4,
+        image: <Song4 />,
+        name: "We Found Love",
+        singer: "Rihanna ft. Calvin Harris",
+    },
+    {
+        id: 5,
+        image: <Song5 />,
+        name: "All About That Bass",
+        singer: "Meghan Trainor",
+    },
+    {
+        id: 6,
+        image: <Song6 />,
+        name: "Counting Stars",
+        singer: "OneRepublic",
+    },
+    {
+        id: 7,
+        image: <Song7 />,
+        name: "Shut Up and Dance",
+        singer: "Walk the Moon",
+    },
+    {
+        id: 8,
+        image: <Song8 />,
+        name: "Cake by the Ocean",
+        singer: "DNCE",
+    },
+    {
+        id: 9,
+        image: <Song9 />,
+        name: "Best Day of My Life",
+        singer: "American Authors",
+    },
+
+]
+
+export const profile_data = [
+    {
+        id: 1,
+        icon: <Profile1 />,
+        name: 'Edit Profile',
+    },
+    {
+        id: 2,
+        icon: <Profile2 />,
+        name: 'Your favorite songs',
+    },
+
+    {
+        id: 3,
+        icon: <Profile3 />,
+        name: 'Dark Mode',
+    },
+    {
+        id: 4,
+        icon: <Profile4 />,
+        name: 'Help & Support',
+    },
+    {
+        id: 5,
+        icon: <Profile5 />,
+        name: 'Language',
     },
 ]
