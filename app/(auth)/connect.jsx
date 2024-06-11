@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView,  } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Back from "../../assets/images/back.svg";
+import Dark_Back from "../../assets/images/dark_back.svg";
 import { connect_data, genrus_data } from '../../components/Data/Data';
 import { Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import Tick from "../../assets/images/active_tick.svg";
 import {Redirect, router} from "expo-router";
 import Button from '../../components/Button/Button';
+import ThemeContext from '../../theme/ThemeContext';
 
 
 const Connect = () => {
+  const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
   const [selectedGenre, setSelectedGenre] = useState(genrus_data[0].id);
 
   const handleGenreClick = (id) => {
@@ -24,12 +27,12 @@ const Connect = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.background}]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={goback}>
-        <Back />
+      {darkMode ? <Dark_Back /> :  <Back />}
         </TouchableOpacity>
-        <Text style={styles.heading}>Connect</Text>
+        <Text style={[styles.heading, {color: theme.color}]}>Connect</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={styles.heading_text}>

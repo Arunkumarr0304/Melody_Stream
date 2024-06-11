@@ -1,23 +1,17 @@
-import { loadFonts } from '../app/(auth)/create_account'; 
-import React,{useEffect} from 'react';
+// _layout.jsx
+import React from 'react';
 import { Stack } from 'expo-router';
+import { ThemeProvider } from '../theme/ThemeContext';
 
 const RootLayout = () => {
-  // call the loadFonts function before rendering the app
-  useEffect(() => {
-    loadFonts().then(() => {
-      // Fonts have been loaded, start the app
-      // ...
-    });
-  }, []);
-
   return (
+    <ThemeProvider>
       <Stack>
         <Stack.Screen name='index' options={{ headerShown: false }} />
         <Stack.Screen name='(auth)' options={{ headerShown: false }} />
         <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
       </Stack>
-
+    </ThemeProvider>
   );
 };
 

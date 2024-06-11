@@ -1,17 +1,19 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import Searchs from "../../assets/images/search.svg";
 import Mic from "../../assets/images/mic.svg";
 import { Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
 import { search_data } from '../../components/Data/Data';
 import { Lato_700Bold } from '@expo-google-fonts/lato';
+import ThemeContext from '../../theme/ThemeContext';
 
 const Search = () => {
+  const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.background}]}>
         <View style={styles.search_input_container}>
                 <TextInput
-                    style={styles.searchInput}
+                    style={[styles.searchInput, {backgroundColor: theme.card, color: theme.color}]}
                     placeholder="Search"
                 />
                 <TouchableOpacity style={styles.search}>
@@ -22,13 +24,13 @@ const Search = () => {
                 </TouchableOpacity>
             </View>
             <ScrollView showsVerticalScrollIndicator={false} >
-          <Text style={styles.browse}>Browse all</Text>
+          <Text style={[styles.browse, {color: theme.color}]}>Browse all</Text>
           <View style={styles.search_tab_container}>
             {
               search_data.map((d) => (
-                <View style={styles.search_tab} key={d.id}>
+                <View style={[styles.search_tab, {backgroundColor: theme.card}]} key={d.id}>
                   {d.image}
-                  <Text style={styles.tab_text}>{d.text}</Text>
+                  <Text style={[styles.tab_text, {color: theme.color}]}>{d.text}</Text>
                 </View>
 
               ))

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, Modal } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Montserrat_700Bold, Lato_400Regular } from '@expo-google-fonts/inter';
 import Profile from "../../assets/images/profile.svg";
 import Mail from "../../assets/images/sms.svg";
@@ -11,9 +11,13 @@ import { Lato_700Bold } from '@expo-google-fonts/lato';
 import { login_types } from '../../components/Data/Data';
 import { Link, router } from "expo-router";
 import Back from "../../assets/images/back.svg";
+import Dark_Back from "../../assets/images/dark_back.svg";
 import Tick from "../../assets/images/green_tick.svg";
+import ThemeContext from '../../theme/ThemeContext';
+
 
 const Login = () => {
+    const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [passwordVisible2, setPasswordVisible2] = useState(false);
     const [passwordVisible3, setPasswordVisible3] = useState(false);
@@ -40,17 +44,17 @@ const Login = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: theme.background}]}>
             <View style={styles.header}>
-                <Text style={styles.heading}>Login Account</Text>
+                <Text style={[styles.heading, {color: theme.color}]}>Login Account</Text>
             </View>
             <Text style={styles.head_text}>Login to access your personalized music collection and playlists anytime, anywhere.</Text>
             <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <View style={styles.input_container}>
                     <View style={styles.name_input}>
-                        <Text style={styles.label}>Email Or Phone Number</Text>
+                        <Text style={[styles.label, {color: theme.color}]}>Email Or Phone Number</Text>
                         <TextInput
-                            style={styles.input}
+                            style={[styles.input, {backgroundColor: theme.card, color: theme.color}]}
                             keyboardType="email-address"
                             placeholder='minatonamikaze@gmail.com'
                         />
@@ -59,9 +63,9 @@ const Login = () => {
                         </View>
                     </View>
                     <View style={styles.name_input}>
-                        <Text style={styles.label}>Password</Text>
+                        <Text style={[styles.label, {color: theme.color}]}>Password</Text>
                         <TextInput
-                            style={[styles.password_input, styles.passwordInput]}
+                            style={[styles.password_input, styles.passwordInput, {backgroundColor: theme.card, color: theme.color}]}
                             secureTextEntry={!passwordVisible}
                             placeholder='password'
                         />
@@ -81,16 +85,16 @@ const Login = () => {
                     </View>
                 </View>
                 <Text style={styles.forget} onPress={handleSubmit}>Forgot password</Text>
-                <Button buttonText="login" />
+                <Button buttonText="login" onPress={genrus} />
                 <Text style={styles.or}>Or Using other Method</Text>
                 <View style={styles.login_container}>
-                    {login_types.map((d) => (
-                        <View style={styles.login_box} key={d.id}>
-                            {d.image}
-                            <Text style={styles.login_type}>{d.text}</Text>
-                        </View>
-                    ))}
-                    <Text style={styles.bottom_text}>
+                {login_types.map((d) => (
+            <TouchableOpacity style={styles.login_box} key={d.id}>
+              {darkMode ? d.Dark_image : d.image}
+              <Text style={[styles.login_type, {color: theme.color}]}>{d.text}</Text>
+            </TouchableOpacity>
+          ))}
+                    <Text style={[styles.bottom_text, {color: theme.color}]}>
                         Already have an account? <Link style={styles.register} href="/create_account">Register</Link>
                     </Text>
                 </View>
@@ -100,22 +104,22 @@ const Login = () => {
                 visible={isModalVisible}
                 onRequestClose={() => setIsModalVisible(false)}
             >
-                <View style={styles.modalOverlay}>
-                    <View style={styles.modalContent}>
+                <View style={[styles.modalOverlay, {backgroundColor: theme.overlay}]}>
+                    <View style={[styles.modalContent, {backgroundColor: theme.background}]}>
                         <View style={styles.modal_inner}>
                             <View style={styles.modal_header}>
                                 <TouchableOpacity onPress={() => setIsModalVisible(false)}>
-                                    <Back />
+                                  {darkMode ? <Dark_Back /> :  <Back />}
                                 </TouchableOpacity>
-                                <Text style={styles.modal_heading}>Forgot Password</Text>
+                                <Text style={[styles.modal_heading, {color: theme.color}]}>Forgot Password</Text>
                             </View>
                             <Text style={styles.modal_text}>Enter your email address below and we'll help you reset your password.</Text>
                         </View>
                         <View style={styles.forget_input_container}>
                             <View style={styles.name_input}>
-                                <Text style={styles.label}>Email</Text>
+                                <Text style={[styles.label, {color: theme.color}]}>Email</Text>
                                 <TextInput
-                                    style={styles.input}
+                                    style={[styles.input, {backgroundColor: theme.card, color: theme.color}]}
                                     keyboardType="email-address"
                                     placeholder='minatonamikaze@gmail.com'
                                 />
@@ -137,20 +141,20 @@ const Login = () => {
                 visible={isModalVisible2}
                 onRequestClose={() => setIsModalVisible2(false)}
             >
-                        <View style={styles.modalOverlay}>
-                        <View style={styles.modalContent}>
+                        <View style={[styles.modalOverlay, {backgroundColor: theme.overlay}]}>
+                        <View style={[styles.modalContent, {backgroundColor: theme.background}]}>
                         <View style={styles.modal_header2}>
                                 <TouchableOpacity onPress={() => setIsModalVisible2(false)}>
-                                    <Back />
+                                 { darkMode ? <Dark_Back /> :  <Back />}
                                 </TouchableOpacity>
-                                <Text style={styles.modal_heading2}>Create New Password</Text>
+                                <Text style={[styles.modal_heading2, {color: theme.color}]}>Create New Password</Text>
                             </View>
                             <Text style={styles.modal_text}>Ensure your account's security with a strong, unique password.</Text>
                             <View style={styles.forget_input_container}>
                             <View style={styles.name_input}>
-                        <Text style={styles.label}>Password</Text>
+                        <Text style={[styles.label, {color: theme.color}]}>Password</Text>
                         <TextInput
-                            style={[styles.password_input, styles.passwordInput]}
+                            style={[styles.password_input, styles.passwordInput, {backgroundColor: theme.card, color: theme.color}]}
                             secureTextEntry={!passwordVisible2}
                             placeholder='password'
                         />
@@ -169,9 +173,9 @@ const Login = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.name_input}>
-                        <Text style={styles.label}>Password</Text>
+                        <Text style={[styles.label, {color: theme.color}]}>Password</Text>
                         <TextInput
-                            style={[styles.password_input, styles.passwordInput]}
+                            style={[styles.password_input, styles.passwordInput, {backgroundColor: theme.card, color: theme.color}]}
                             secureTextEntry={!passwordVisible3}
                             placeholder='password'
                         />

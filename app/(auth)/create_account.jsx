@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { Montserrat_700Bold, Lato_400Regular } from '@expo-google-fonts/inter';
 import Profile from "../../assets/images/profile.svg";
 import Mail from "../../assets/images/sms.svg";
@@ -10,8 +10,10 @@ import  Button  from '../../components/Button/Button';
 import { Lato_700Bold } from '@expo-google-fonts/lato';
 import { login_types } from '../../components/Data/Data';
 import { Link, router } from "expo-router";
+import ThemeContext from '../../theme/ThemeContext';
 
 const Create_account = () => {
+  const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const create =() => {
@@ -23,17 +25,17 @@ const Create_account = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.background}]}>
       <View style={styles.header}>
-        <Text style={styles.heading}>Create Account</Text>
+        <Text style={[styles.heading, {color: theme.color}]}>Create Account</Text>
       </View>
       <Text style={styles.head_text}>Create your account to unlock a personalized music experience tailored to your taste.</Text>
       <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.input_container}>
           <View style={styles.name_input}>
-            <Text style={styles.label}>Name</Text>
+            <Text style={[styles.label, {color: theme.color}]}>Name</Text>
             <TextInput
-              style={styles.input}
+              style={[styles.input, {backgroundColor: theme.card, color: theme.color}]}
               autoCapitalize="none"
               autoCorrect={false}
               placeholder='Minato Namikaze'
@@ -43,9 +45,9 @@ const Create_account = () => {
             </View>
           </View>
           <View style={styles.name_input}>
-            <Text style={styles.label}>Email Or Phone Number</Text>
+            <Text style={[styles.label, {color: theme.color}]}>Email Or Phone Number</Text>
             <TextInput
-              style={styles.input}
+              style={[styles.input , {backgroundColor: theme.card, color: theme.color}]}
               keyboardType="email-address"
               placeholder='minatonamikaze@gmail.com'
             />
@@ -54,10 +56,11 @@ const Create_account = () => {
             </View>
           </View>
           <View style={styles.name_input}>
-            <Text style={styles.label}>Password</Text>
+            <Text style={[styles.label, {color: theme.color}]}>Password</Text>
             <TextInput
-              style={[styles.password_input, styles.passwordInput]}
+              style={[styles.password_input, styles.passwordInput, {backgroundColor: theme.card, color: theme.color}]}
               secureTextEntry={!passwordVisible}
+              placeholder='password'
             />
             <View style={styles.input_icon}>
               <Lock />
@@ -78,12 +81,12 @@ const Create_account = () => {
         <Text style={styles.or}>Or Using other Method</Text>
         <View style={styles.login_container}>
           {login_types.map((d) => (
-            <View style={styles.login_box} key={d.id}>
-              {d.image}
-              <Text style={styles.login_type}>{d.text}</Text>
-            </View>
+            <TouchableOpacity style={styles.login_box} key={d.id}>
+              {darkMode ? d.Dark_image : d.image}
+              <Text style={[styles.login_type, {color: theme.color}]}>{d.text}</Text>
+            </TouchableOpacity>
           ))}
-          <Text style={styles.bottom_text}>
+          <Text style={[styles.bottom_text, {color:theme.color}]}>
             Already have an account? <Link style={styles.register} href="/login"> Login</Link>
           </Text>
         </View>

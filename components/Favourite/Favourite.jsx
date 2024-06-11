@@ -1,24 +1,26 @@
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Favourite_data, recent_data } from '../Data/Data';
 import { Montserrat_600SemiBold, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import Play from '../../assets/images/play.svg';
+import ThemeContext from '../../theme/ThemeContext';
 
 const Favourite = () => {
+    const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
   return (
     <View style={styles.favourite_section}>
-        <Text style={styles.fav_heading}>Your Favourite Artist</Text>
+        <Text style={[styles.fav_heading, {color:theme.color}]}>Your Favourite Artist</Text>
         <ScrollView style={styles.fav_container} horizontal showsHorizontalScrollIndicator={false}>
         {
             Favourite_data.map((d) => (
                 <TouchableOpacity style={styles.favourite_box} key={d.id}>
                     {d.image}
-                    <Text style={styles.fav_text}>{d.text}</Text>
+                    <Text style={[styles.fav_text, {color:theme.color}]}>{d.text}</Text>
                 </TouchableOpacity>
             ))
         }
         </ScrollView>
-        <Text style={styles.recent_heading}>recently played</Text>
+        <Text style={[styles.recent_heading, {color:theme.color}]}>recently played</Text>
         <ScrollView style={styles.top_container} horizontal showsHorizontalScrollIndicator={false}>
                 {recent_data.map((data) => (
                     <TouchableOpacity style={styles.top_box} key={data.id}>
@@ -27,7 +29,7 @@ const Favourite = () => {
                         </View>
                         <View style={styles.box_body}>
                             <View style={styles.left_content}>
-                            <Text style={styles.box_body_heading}>{data.heading}</Text>
+                            <Text style={[styles.box_body_heading, {color: theme.color}]}>{data.heading}</Text>
                             <Text style={styles.box_body_text}>playlist</Text>
                             </View>
                             <Play />

@@ -1,19 +1,25 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Back from "../../assets/images/back.svg";
+import Dark_Back from "../../assets/images/dark_back.svg";
 import { genrus_data } from '../../components/Data/Data';
 import { Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import Tick from "../../assets/images/active_tick.svg";
-import {Redirect, router} from "expo-router";
+import { Redirect, router } from "expo-router";
 import Button from '../../components/Button/Button';
-
-
+import ThemeContext from '../../theme/ThemeContext';
 
 const Genrus = () => {
-  const [selectedGenre, setSelectedGenre] = useState(genrus_data[0].id);
-
+  const [selectedGenres, setSelectedGenres] = useState([genrus_data[0].id]);
+  const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
   const handleGenreClick = (id) => {
-    setSelectedGenre(id);
+    setSelectedGenres((prevSelectedGenres) => {
+      if (prevSelectedGenres.includes(id)) {
+        return prevSelectedGenres.filter((genreId) => genreId !== id);
+      } else {
+        return [...prevSelectedGenres, id];
+      }
+    });
   };
 
   const goback = () => {
@@ -25,38 +31,38 @@ const Genrus = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.background}]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={goback}>
-        <Back />
+        { darkMode ? <Dark_Back /> : <Back />}
         </TouchableOpacity>
-        <Text style={styles.heading}>Genres</Text>
+        <Text style={[styles.heading, {color: theme.color}]}>Genres</Text>
       </View>
       <ScrollView>
-      <Text style={styles.heading_text}>
-        Dive into a world of musical genres, from classic to contemporary, and find your rhythm.
-      </Text>
-      <View style={styles.genrus_container}>
-        {genrus_data.map((d) => (
-          <TouchableOpacity
-            style={[
-              styles.genrus_box,
-              selectedGenre === d.id && styles.selected_image_box,
-            ]}
-            key={d.id}
-            onPress={() => handleGenreClick(d.id)}
-          >
-            <View style={styles.image_box}>
-              {selectedGenre === d.id ? d.Active : d.image}
-              {selectedGenre === d.id && <Tick style={styles.tick} />}
-            </View>
-            <Text style={styles.box_text}>{d.text}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-      <View style={styles.button_box}>
-        <Button buttonText="continue" onPress={continues} />
-      </View>
+        <Text style={styles.heading_text}>
+          Dive into a world of musical genres, from classic to contemporary, and find your rhythm.
+        </Text>
+        <View style={styles.genrus_container}>
+          {genrus_data.map((d) => (
+            <TouchableOpacity
+              style={[
+                styles.genrus_box,
+                selectedGenres.includes(d.id) && styles.selected_image_box,
+              ]}
+              key={d.id}
+              onPress={() => handleGenreClick(d.id)}
+            >
+              <View style={styles.image_box}>
+                {selectedGenres.includes(d.id) ? d.Active : d.image}
+                {selectedGenres.includes(d.id) && <Tick style={styles.tick} />}
+              </View>
+              <Text style={styles.box_text}>{d.text}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+        <View style={styles.button_box}>
+          <Button buttonText="continue" onPress={continues} />
+        </View>
       </ScrollView>
     </View>
   );

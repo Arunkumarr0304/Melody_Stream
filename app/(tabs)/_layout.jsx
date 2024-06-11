@@ -1,7 +1,8 @@
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { Tabs } from 'expo-router';
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import ThemeContext from '../../theme/ThemeContext';
 
 const TabIcon = ({ icon, color, library }) => {
   const IconComponent = library === 'FontAwesome' ? FontAwesome : MaterialIcons;
@@ -33,8 +34,9 @@ const TabBarButton = ({ children, onPress, accessibilityState, title }) => {
 };
 
 const TabsLayout = () => {
+  const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.background}]}>
       <Tabs
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
@@ -43,7 +45,7 @@ const TabsLayout = () => {
           tabBarButton: (props) => (
             <TabBarButton {...props} title={route.name} />
           ),
-          tabBarStyle: styles.tabBar,
+          tabBarStyle: [styles.tabBar, {backgroundColor: theme.cardbg}],
           headerShown: false, // Ensure header is hidden
         })}
       >

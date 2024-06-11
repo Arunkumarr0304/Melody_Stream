@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Back from "../../assets/images/back.svg";
+import Dark_Back from "../../assets/images/dark_back.svg";
 import {Redirect, router} from "expo-router";
 import Song from "../../assets/images/song.svg";
 import Shuffle from "../../assets/images/shuffle.svg";
@@ -15,8 +16,10 @@ import Prev from "../../assets/images/previous.svg";
 import Plays from "../../assets/images/play_cricle.svg";
 import Playing2 from "../../assets/images/playing.svg";
 import Next from "../../assets/images/next.svg";
+import ThemeContext from '../../theme/ThemeContext';
 
 const Songs = () => {
+  const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isPlaying1, setIsPlaying1] = useState(false);
 
@@ -30,12 +33,17 @@ const Songs = () => {
     
     const goback = () => {
         router.push('library');
-    }
+    };
+
+    const player = () => {
+      router.push('music_player');
+    };
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.background}]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={goback}>
-        <Back />
+     { darkMode ? <Dark_Back /> :  <Back />}
         </TouchableOpacity>
       </View>
       <View style={styles.top_box} >
@@ -46,7 +54,7 @@ const Songs = () => {
           </View>
           <View style={styles.top_row}>
             <View style={styles.row_left}>
-                <Text style={styles.song_name}>Liked Songs</Text>
+                <Text style={[styles.main_song_name, {color: theme.color}]}>Liked Songs</Text>
                 <Text style={styles.list}>Playlist, 25 songs</Text>
             </View>
             <View style={styles.row_right}>
@@ -62,16 +70,16 @@ const Songs = () => {
           <View style={styles.songs_container}>
             {
                 songs_data.map((d) => (
-                    <View style={styles.songs_tab} key={d.id}>
+                    <TouchableOpacity style={styles.songs_tab} key={d.id} onPress={player}>
                         <View style={styles.left_content}>
                         {d.image}
                         <View style={styles.song_content}>
-                            <Text style={styles.songs_name}>{d.name}</Text>
+                            <Text style={[styles.songs_name, {color: theme.color}]}>{d.name}</Text>
                             <Text style={styles.singer}>{d.singer}</Text>
                         </View>
                         </View>
                         <Settings />
-                    </View>
+                    </TouchableOpacity>
                 ))
             }
           </View>
@@ -106,6 +114,7 @@ const styles = StyleSheet.create({
     container: {
         paddingTop: 50,
         paddingHorizontal: 20,
+        backgroundColor: '#ffffff',
     },
     top_box: {
         marginRight: 0,
@@ -137,12 +146,10 @@ const styles = StyleSheet.create({
       row_left: {
 
       },
-      song_name: {
+      main_song_name: {
         fontSize: 14,
-        lineHeight: 24, 
+        lineHeight: 24,
         fontFamily: 'Montserrat_700Bold',
-        textTransform: 'capitalize',
-        color: '#121212',
       },
       list: {
         fontSize: 10,
@@ -173,6 +180,12 @@ const styles = StyleSheet.create({
       },
       song_content: {
 
+      },
+      songs_name: {
+        fontSize: 16,
+        lineHeight: 26,
+        fontFamily: 'Lato_700Bold',
+        color: '#121212',
       },
       song_name: {
         fontSize: 16,
@@ -205,13 +218,6 @@ const styles = StyleSheet.create({
       },
       tab_content: {
     
-      },
-      song_name: {
-        fontSize: 16,
-        lineHeight: 26,
-        fontFamily: 'Lato_700Bold',
-        color: '#ffffff',
-        textTransform: 'capitalize',
       },
       singer: {
         fontSize: 12,

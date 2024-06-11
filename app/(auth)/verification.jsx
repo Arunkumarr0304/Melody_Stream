@@ -1,15 +1,17 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Modal } from 'react-native';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import Back from "../../assets/images/back.svg";
+import Dark_Back from "../../assets/images/dark_back.svg";
 import { Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import { Link, router } from "expo-router";
 import Verifications from "../../assets/images/verification.svg";
 import { Lato_300Light, Lato_400Regular } from '@expo-google-fonts/lato';
 import Button from '../../components/Button/Button';
 import Success from "../../assets/images/success.svg";
-
+import ThemeContext from '../../theme/ThemeContext';
 
 const Verification = () => {
+    const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
     const [otp, setOtp] = useState(['', '', '', '']);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const otpInputs = useRef([]);
@@ -52,24 +54,24 @@ const Verification = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: theme.background}]}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={back}>
-                    <Back />
+                  {darkMode ? <Dark_Back /> :  <Back />}
                 </TouchableOpacity>
-                <Text style={styles.heading}>Verification</Text>
+                <Text style={[styles.heading, {color: theme.color}]}>Verification</Text>
             </View>
             <View style={styles.content}>
                 <Verifications />
-                <Text style={styles.content_heading}>Verification Code</Text>
-                <Text style={styles.content_text}>We have sent the code verification to</Text>
-                <Text style={styles.content_text2}>minatonami****@gmail.com</Text>
+                <Text style={[styles.content_heading, {color: theme.color}]}>Verification Code</Text>
+                <Text style={[styles.content_text, {color:theme.color}]}>We have sent the code verification to</Text>
+                <Text style={[styles.content_text2, {color: theme.color}]}>minatonami****@gmail.com</Text>
             </View>
             <View style={styles.otp_block}>
                 {otp.map((digit, index) => (
                     <TextInput
                         key={index}
-                        style={styles.input}
+                        style={[styles.input, {color: theme.color}]}
                         maxLength={1}
                         keyboardType="numeric"
                         onChangeText={(value) => handleOtpChange(index, value)}
@@ -82,23 +84,25 @@ const Verification = () => {
             
                 <Button buttonText="submit" onPress={handleSubmit} />
             
-            <Text style={styles.bottom_text}>Didn’t receive the code?<Text style={styles.resend}> Resend</Text></Text>
+            <Text style={[styles.bottom_text, {color: theme.color}]}>Didn’t receive the code?<Text style={styles.resend}> Resend</Text></Text>
             
             <Modal
                 transparent={true}
                 visible={isModalVisible}
                 onRequestClose={() => setIsModalVisible(false)}
             >
-                <View style={styles.modalOverlay}>
-                    <View style={styles.modalContent}>
+                <View style={[styles.modalOverlay, {backgroundColor: theme.overlay}]}>
+                    <View style={[styles.modalContent, {backgroundColor:theme.background}]}>
+                        <TouchableOpacity style={styles.closeButton} onPress={() => setIsModalVisible(false)}>
+                            <Text style={[styles.closeButtonText, {color: theme.color}]}>X</Text>
+                        </TouchableOpacity>
                         <View style={styles.modal_inner}>
-                        <Success />
-                        <Text style={styles.modal_heading}>Register Success</Text>
-                        <Text style={styles.modal_text}>Congratulation your account already created. Please login to get amazing experience.</Text>
+                            <Success />
+                            <Text style={[styles.modal_heading, {color:theme.color}]}>Register Success</Text>
+                            <Text style={styles.modal_text}>Congratulation your account already created. Please login to get amazing experience.</Text>
                         </View>
                         <Button buttonText="continue" onPress={continues} />
                     </View>
-                   
                 </View>
             </Modal>
         </View>
@@ -195,6 +199,16 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
     },
+    closeButton: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+        zIndex: 1,
+    },
+    closeButtonText: {
+        fontSize: 20,
+        color: '#000',
+    },
     modal_inner: {
         alignItems: 'center',
     },
@@ -216,5 +230,3 @@ const styles = StyleSheet.create({
         marginBottom: 40,
     },
 });
-
-//{() => setIsModalVisible(false)}

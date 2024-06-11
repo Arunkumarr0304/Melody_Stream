@@ -4,6 +4,7 @@ import Onboard3 from "../../assets/images/Onboard_img3.svg";
 
 import Google from "../../assets/images/Google.svg";
 import Apple from "../../assets/images/Apple.svg";
+import Dark_Apple from "../../assets/images/dark_apple.svg";
 
 import Genrus1 from "../../assets/images/genrus1.svg";
 import Genrus2 from "../../assets/images/genrus2.svg";
@@ -106,6 +107,12 @@ import Profile4 from "../../assets/images/profile_icon4.svg";
 import Profile5 from "../../assets/images/profile_icon5.svg";
 import Profile6 from "../../assets/images/profile_icon6.svg";
 
+import Dark_profile1 from "../../assets/images/dark_profile_icon1.svg";
+import Dark_profile2 from "../../assets/images/dark_profile_icon2.svg";
+import Dark_profile3 from "../../assets/images/dark_profile_icon3.svg";
+import Dark_profile4 from "../../assets/images/dark_profile_icon4.svg";
+import Dark_profile5 from "../../assets/images/dark_profile_icon5.svg";
+
 export const pages = [
     {
         id: 1,
@@ -134,11 +141,13 @@ export const login_types = [
     {
         id: 1,
         image: <Google />,
+        Dark_image: <Google />,
         text: 'Sign Up with Google',
     },
     {
         id: 2,
         image: <Apple />,
+        Dark_image: <Dark_Apple />,
         text: 'Sign Up with Apple',
     }
 ]
@@ -582,27 +591,32 @@ export const profile_data = [
     {
         id: 1,
         icon: <Profile1 />,
+        active_icon: <Dark_profile1 />,
         name: 'Edit Profile',
     },
     {
         id: 2,
         icon: <Profile2 />,
+        active_icon: <Dark_profile2 />,
         name: 'Your favorite songs',
     },
 
     {
         id: 3,
         icon: <Profile3 />,
+        active_icon: <Dark_profile3 />,
         name: 'Dark Mode',
     },
     {
         id: 4,
         icon: <Profile4 />,
+        active_icon: <Dark_profile4 />,
         name: 'Help & Support',
     },
     {
         id: 5,
         icon: <Profile5 />,
+        active_icon: <Dark_profile5 />,
         name: 'Language',
     },
 ]

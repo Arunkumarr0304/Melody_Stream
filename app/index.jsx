@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback, useContext } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, Dimensions, ScrollView, StatusBar, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from '@react-navigation/native';
@@ -7,7 +7,10 @@ import { router } from "expo-router";
 import Button from "../components/Button/Button";
 import Pagination from "../components/Pagination/Pagination";
 import * as SplashScreen from 'expo-splash-screen';
-import { useFonts, Kalam_400Regular, Kalam_700Bold } from '@expo-google-fonts/kalam';
+import { useFonts } from 'expo-font'; // Ensure correct import
+
+// Import the required fonts
+import { Kalam_400Regular, Kalam_700Bold } from '@expo-google-fonts/kalam';
 import { Montserrat_400Regular, Montserrat_700Bold, Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
 import { Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato";
 
@@ -16,7 +19,6 @@ const { width, height } = Dimensions.get('window');
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
- 
   const navigation = useNavigation();
   const swiperRef = useRef(null);
   const totalPages = pages.length;
@@ -27,7 +29,7 @@ export default function App() {
     Montserrat_400Regular,
     Montserrat_600SemiBold,
     Lato_400Regular,
-    Lato_700Bold
+    Lato_700Bold,
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -53,7 +55,6 @@ export default function App() {
         Animated.timing(headingOpacity, { toValue: 0, duration: 200, useNativeDriver: true }),
         Animated.timing(heading2Opacity, { toValue: 0, duration: 200, useNativeDriver: true }),
         Animated.timing(descriptionOpacity, { toValue: 0, duration: 200, useNativeDriver: true }),
-      
       ]),
       Animated.parallel([
         Animated.timing(headingOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
@@ -80,53 +81,53 @@ export default function App() {
 
   return (
     <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
-    <StatusBar backgroundColor="rgba(0.8, 0.8, 0.8, 0.8)"  barStyle="light-content" />
-    <ScrollView
-      horizontal
-      pagingEnabled
-      showsHorizontalScrollIndicator={false}
-      ref={swiperRef}
-      onScroll={handleImageScroll}
-      scrollEventThrottle={16}
-      contentContainerStyle={{ width: width * totalPages }}
-      style={{ flex: 1 }}
-    >
-      {pages.map((page, index) => (
-        <View key={index} style={[styles.page, { width }]}>
-          <View style={styles.imageContainer}>
-            {page.image}
+      <StatusBar backgroundColor="rgba(0.8, 0.8, 0.8, 0.8)" barStyle="light-content" />
+      <ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        ref={swiperRef}
+        onScroll={handleImageScroll}
+        scrollEventThrottle={16}
+        contentContainerStyle={{ width: width * totalPages }}
+        style={{ flex: 1 }}
+      >
+        {pages.map((page, index) => (
+          <View key={index} style={[styles.page, { width }]}>
+            <View style={styles.imageContainer}>
+              {page.image}
+            </View>
           </View>
-        </View>
-      ))}
-    </ScrollView>
-    <View style={styles.onboard_content}>
-      <Animated.Text style={[styles.heading, { opacity: headingOpacity }]}>
-        {pages[activePageIndex].heading}
-      </Animated.Text>
-      <Animated.Text style={[styles.description, { opacity: descriptionOpacity }]}>
-        {pages[activePageIndex].Text}
-      </Animated.Text>
-      <Animated.View style={{ opacity: paginationOpacity }}>
+        ))}
+      </ScrollView>
+      <View style={styles.onboard_content}>
+        <Animated.Text style={[styles.heading, { opacity: headingOpacity }]}>
+          {pages[activePageIndex].heading}
+        </Animated.Text>
+        <Animated.Text style={[styles.description, { opacity: descriptionOpacity }]}>
+          {pages[activePageIndex].Text}
+        </Animated.Text>
+        <Animated.View style={{ opacity: paginationOpacity }}>
           <Pagination activePageIndex={activePageIndex} totalPages={totalPages} />
         </Animated.View>
-      <View style={styles.page_button_container}>
-        
-        {activePageIndex === totalPages - 1 ? (
-          <View style={{ paddingTop: 15 }}>
-            <Button buttonText="Get started"
-              backgroundColor="#FF7735"
-              textColor='#FFFFFF'  
-              onPress={() => router.push('create_account')}
-            />
-          </View>
-        ) : (
-          <View style={{ paddingTop: 15 }}>
-            <Button buttonText="Next" backgroundColor="#FF7735" textColor='#ffffff' onPress={handleNextPress} />
-          </View>
-        )}
+        <View style={styles.page_button_container}>
+          {activePageIndex === totalPages - 1 ? (
+            <View style={{ paddingTop: 15 }}>
+              <Button
+                buttonText="Get started"
+                backgroundColor="#FF7735"
+                textColor='#FFFFFF'
+                onPress={() => router.push('create_account')}
+              />
+            </View>
+          ) : (
+            <View style={{ paddingTop: 15 }}>
+              <Button buttonText="Next" backgroundColor="#FF7735" textColor='#ffffff' onPress={handleNextPress} />
+            </View>
+          )}
+        </View>
       </View>
-    </View>
-  </SafeAreaView>
+    </SafeAreaView>
   );
 }
 
@@ -156,9 +157,9 @@ const styles = StyleSheet.create({
     fontSize: 28,
     lineHeight: 40,
     fontWeight: '690',
-    color: '#ffffff', 
-    textAlign: 'center', 
-    fontFamily: 'Montserrat_700Bold',  
+    color: '#ffffff',
+    textAlign: 'center',
+    fontFamily: 'Montserrat_700Bold',
     marginBottom: 18,
   },
   description: {

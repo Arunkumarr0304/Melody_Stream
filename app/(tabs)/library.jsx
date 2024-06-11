@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Back from "../../assets/images/back.svg";
+import Dark_Back from "../../assets/images/dark_back.svg";
 import { Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import {Redirect, router} from "expo-router";
 import { home_tab, library_data, library_tab, top_data } from '../../components/Data/Data';
@@ -10,8 +11,10 @@ import Prev from "../../assets/images/previous.svg";
 import Play from "../../assets/images/play_cricle.svg";
 import Playing from "../../assets/images/playing.svg";
 import Next from "../../assets/images/next.svg";
+import ThemeContext from '../../theme/ThemeContext';
 
 const Library = () => {
+  const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
   const [activeTab, setActiveTab] = useState(home_tab[0].id);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -28,12 +31,12 @@ const Library = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.background}]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={goback}>
-          <Back />
+          {darkMode ? <Dark_Back /> : <Back />}
         </TouchableOpacity>
-        <Text style={styles.heading}>Your Library</Text>
+        <Text style={[styles.heading, {color: theme.color}]}>Your Library</Text>
       </View>
       <View style={styles.tab_container}>
         {library_tab.map((d) => (
@@ -56,7 +59,7 @@ const Library = () => {
               <Text style={styles.image_text}>{data.heading}</Text>
             </View>
             <View style={styles.box_body}>
-              <Text style={styles.box_body_heading}>{data.heading}</Text>
+              <Text style={[styles.box_body_heading, {color: theme.color}]}>{data.heading}</Text>
               <Text style={styles.box_body_text}>{data.playlist}</Text>
             </View>
           </TouchableOpacity>

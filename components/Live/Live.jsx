@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Live_data } from '../Data/Data';
 import { Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
+import ThemeContext from '../../theme/ThemeContext';
 
 const Live = () => {
+    const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
   return (
     <View style={styles.Live_section}>
-       <Text style={styles.recent_heading}>recently played</Text>
+       <Text style={[styles.recent_heading, {color: theme.color}]}>recently played</Text>
         <ScrollView style={styles.top_container} horizontal showsHorizontalScrollIndicator={false}>
                 {Live_data.map((data) => (
                     <TouchableOpacity style={styles.top_box} key={data.id}>
@@ -18,7 +20,7 @@ const Live = () => {
                         </View>
                         <View style={styles.box_body}>
                             <View style={styles.left_content}>
-                            <Text style={styles.box_body_heading}>{data.heading}</Text>
+                            <Text style={[styles.box_body_heading, {color: theme.color}]}>{data.heading}</Text>
                             <Text style={styles.box_body_text}>{data.details}</Text>
                             </View>
                         </View>

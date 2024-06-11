@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Profile from "../../assets/images/home_profile.svg";
 import { home_tab, top_data } from '../../components/Data/Data';
 import Search from "../../assets/images/search.svg";
@@ -9,8 +9,10 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import Favourite from '../../components/Favourite/Favourite';
 import Live from '../../components/Live/Live';
+import ThemeContext from '../../theme/ThemeContext';
 
 const Home = () => {
+    const { theme, darkMode, toggleTheme } = useContext(ThemeContext);
     const [activeTab, setActiveTab] = useState(home_tab[0].id);
     const [wishlist, setWishlist] = useState([]);
 
@@ -21,7 +23,7 @@ const Home = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: theme.background}]}>
             <View style={styles.header}>
                 <Profile />
                 <View style={styles.tab_container}>
@@ -41,7 +43,7 @@ const Home = () => {
             
             <View style={styles.search_input_container}>
                 <TextInput
-                    style={styles.searchInput}
+                    style={[styles.searchInput, {backgroundColor: theme.card, color: theme.color}]}
                     placeholder="Search"
                 />
                 <TouchableOpacity style={styles.search}>
@@ -53,7 +55,7 @@ const Home = () => {
             </View>
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollstyles}>
             <View style={styles.head_row}>
-                <Text style={styles.heading}>Your Top Mixes</Text>
+                <Text style={[styles.heading, {color: theme.color}]}>Your Top Mixes</Text>
                 <Text style={styles.see}>see all</Text>
             </View>
             <ScrollView style={styles.top_container} horizontal showsHorizontalScrollIndicator={false}>
@@ -68,13 +70,13 @@ const Home = () => {
                                 {wishlist.includes(data.id) ? (
                                     <FontAwesomeIcon icon={faHeartSolid} size={24} color="#D81159" />
                                 ) : (
-                                    <FontAwesomeIcon icon={faHeart} size={24} color="#D81159" />
+                                    <FontAwesomeIcon icon={faHeart} size={24} color="#ffffff" />
                                 )}
                             </TouchableOpacity>
                             <Text style={styles.image_text}>{data.heading}</Text>
                         </View>
                         <View style={styles.box_body}>
-                            <Text style={styles.box_body_heading}>{data.heading}</Text>
+                            <Text style={[styles.box_body_heading, {color: theme.color}]}>{data.heading}</Text>
                             <Text style={styles.box_body_text}>playlist</Text>
                         </View>
                     </View>
@@ -119,6 +121,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         lineHeight: 22,
         fontFamily: 'Lato_700Bold',
+        color: '#D81159',
     },
     activeTab: {
         backgroundColor: '#D81159',
